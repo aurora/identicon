@@ -26,7 +26,7 @@
 # http://identicons.sf.net/ 
 #
 # The original script requires PHP and the GD library, the re-implemented
-# script is indented to be called from command-line and requires a bash, 
+# script is intented to be called from command-line and requires a bash, 
 # imagemagick and bc.
 #
 

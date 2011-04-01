@@ -1,11 +1,6 @@
 identicon.sh
 ============
 
-Name
-----
-
-identicon.sh
-
 Usage
 -----
 
@@ -13,6 +8,10 @@ Usage
 
 Description
 -----------
+
+An Identicon is a visual representation of a hash value. Please have a look at "[wikipedia](http://en.wikipedia.org/wiki/Identicon)"
+for a detailed explanation of identicons and have a look at the "[wiki](https://github.com/aurora/identicon/wiki/Examples)" for some
+generated "[example identicons](https://github.com/aurora/identicon/wiki/Examples)". 
 
 This is a re-implementation of the PHP script "[PHP identicons](http://identicons.sf.net/)".
 
@@ -35,7 +34,7 @@ License
 
 identicon.sh
 
-Copyright (C) 2011 by Harald Lapp <harald@octris.org>
+Copyright (C) 2011 by Harald Lapp <<harald@octris.org>>
  
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -48,4 +47,4 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
  
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program.  If not, see <<http://www.gnu.org/licenses/>>.

@@ -228,29 +228,29 @@ let sfb=0x${hash:16:2}
 #let angle=0x${hash:18:2}                    # final angle of rotation
 
 # generate corner sprites
-getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 90) % 360)) $((spriteZ * 2)) $((spriteZ * 2))
+getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 270) % 360)) 0 0
 draw="$draw $ret"
 
-getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 90 + 90) % 360)) 0 $((spriteZ * 2))
+getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 270 + 90) % 360)) $((spriteZ * 2)) 0
 draw="$draw $ret"
 
-getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 90 + 180) % 360)) 0 0
+getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 270 + 180) % 360)) $((spriteZ * 2)) $((spriteZ * 2))
 draw="$draw $ret"
 
-getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 90 + 270) % 360)) $((spriteZ * 2)) 0
+getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 270 + 270) % 360)) 0 $((spriteZ * 2))
 draw="$draw $ret"
 
 # generate side sprites
-getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 90) % 360)) $spriteZ $(($spriteZ * 2))
+getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 270) % 360)) $spriteZ 0
 draw="$draw $ret"
 
-getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 90 + 90) % 360)) 0 $spriteZ
+getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 270 + 90) % 360)) $((spriteZ * 2)) $spriteZ
 draw="$draw $ret"
 
-getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 90 + 180) % 360)) $spriteZ 0
+getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 270 + 180) % 360)) $spriteZ $(($spriteZ * 2))
 draw="$draw $ret"
 
-getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 90 + 270) % 360)) $((spriteZ * 2)) $spriteZ
+getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 270 + 270) % 360)) 0 $spriteZ
 draw="$draw $ret"
 
 # generate center sprite

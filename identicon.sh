@@ -33,6 +33,7 @@
 # init
 # 
 spriteZ=128                                         # size of each sprite
+spriteZCoord=$((spriteZ - 1))                       # used for (x,y) coordinates
 draw=""                                             # stores MVG commands to draw
 ret=""                                              # stores return values of functions
 
@@ -139,16 +140,16 @@ function getsprite {
         0)
             xOffs=0; yOffs=0;;
         90)
-            xOffs=0; yOffs=-$spriteZ;;
+            xOffs=0; yOffs=-$spriteZCoord;;
         180)
-            xOffs=-$spriteZ; yOffs=-$spriteZ;;
+            xOffs=-$spriteZCoord; yOffs=-$spriteZCoord;;
         270)
-            xOffs=-$spriteZ; yOffs=0;;
+            xOffs=-$spriteZCoord; yOffs=0;;
     esac
 
     # create polygon with the applied ratio
     for point in $points; do
-        polygon="$polygon $(echo "${point%%,*} * $spriteZ + $xOffs" | bc -l),$(echo "${point##*,} * $spriteZ + $yOffs" | bc -l)"
+        polygon="$polygon $(echo "${point%%,*} * $spriteZCoord + $xOffs" | bc -l),$(echo "${point##*,} * $spriteZCoord + $yOffs" | bc -l)"
     done
     
     ret="push graphic-context
@@ -191,13 +192,13 @@ function getcenter {
 
     # create polygon with the applied ratio
     for point in $points; do
-        polygon="$polygon $(echo "${point%%,*} * $spriteZ" | bc -l),$(echo "${point##*,} * $spriteZ" | bc -l)"
+        polygon="$polygon $(echo "${point%%,*} * $spriteZCoord" | bc -l),$(echo "${point##*,} * $spriteZCoord" | bc -l)"
     done
     
     if [ "$points" != "" ]; then
         ret="push graphic-context
                 translate $((tX)),$((tY))
-                fill $bRGB      rectangle 0,0 $spriteZ,$spriteZ
+                fill $bRGB      rectangle 0,0 $spriteZCoord,$spriteZCoord
                 fill $fRGB      path 'M $polygon Z'
              pop graphic-context"
     else

@@ -33,6 +33,7 @@
 # init
 # 
 spriteZ=128                                         # size of each sprite
+spriteZCoord=$((spriteZ - 1))                       # used for (x,y) coordinates
 draw=""                                             # stores MVG commands to draw
 ret=""                                              # stores return values of functions
 
@@ -139,16 +140,16 @@ function getsprite {
         0)
             xOffs=0; yOffs=0;;
         90)
-            xOffs=0; yOffs=-$spriteZ;;
+            xOffs=0; yOffs=-$spriteZCoord;;
         180)
-            xOffs=-$spriteZ; yOffs=-$spriteZ;;
+            xOffs=-$spriteZCoord; yOffs=-$spriteZCoord;;
         270)
-            xOffs=-$spriteZ; yOffs=0;;
+            xOffs=-$spriteZCoord; yOffs=0;;
     esac
 
     # create polygon with the applied ratio
     for point in $points; do
-        polygon="$polygon $(echo "${point%%,*} * $spriteZ + $xOffs" | bc -l),$(echo "${point##*,} * $spriteZ + $yOffs" | bc -l)"
+        polygon="$polygon $(echo "${point%%,*} * $spriteZCoord + $xOffs" | bc -l),$(echo "${point##*,} * $spriteZCoord + $yOffs" | bc -l)"
     done
     
     ret="push graphic-context
@@ -191,13 +192,13 @@ function getcenter {
 
     # create polygon with the applied ratio
     for point in $points; do
-        polygon="$polygon $(echo "${point%%,*} * $spriteZ" | bc -l),$(echo "${point##*,} * $spriteZ" | bc -l)"
+        polygon="$polygon $(echo "${point%%,*} * $spriteZCoord" | bc -l),$(echo "${point##*,} * $spriteZCoord" | bc -l)"
     done
     
     if [ "$points" != "" ]; then
         ret="push graphic-context
                 translate $((tX)),$((tY))
-                fill $bRGB      rectangle 0,0 $spriteZ,$spriteZ
+                fill $bRGB      rectangle 0,0 $spriteZCoord,$spriteZCoord
                 fill $fRGB      path 'M $polygon Z'
              pop graphic-context"
     else
@@ -227,29 +228,29 @@ let sfb=0x${hash:16:2}
 #let angle=0x${hash:18:2}                    # final angle of rotation
 
 # generate corner sprites
-getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 90) % 360)) $((spriteZ * 2)) $((spriteZ * 2))
+getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 270) % 360)) 0 0
 draw="$draw $ret"
 
-getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 90 + 90) % 360)) 0 $((spriteZ * 2))
+getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 270 + 90) % 360)) $((spriteZ * 2)) 0
 draw="$draw $ret"
 
-getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 90 + 180) % 360)) 0 0
+getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 270 + 180) % 360)) $((spriteZ * 2)) $((spriteZ * 2))
 draw="$draw $ret"
 
-getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 90 + 270) % 360)) $((spriteZ * 2)) 0
+getsprite $csh "rgb($cfr,$cfg,$cfb)" $(((cro * 270 + 270) % 360)) 0 $((spriteZ * 2))
 draw="$draw $ret"
 
 # generate side sprites
-getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 90) % 360)) $spriteZ $(($spriteZ * 2))
+getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 270) % 360)) $spriteZ 0
 draw="$draw $ret"
 
-getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 90 + 90) % 360)) 0 $spriteZ
+getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 270 + 90) % 360)) $((spriteZ * 2)) $spriteZ
 draw="$draw $ret"
 
-getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 90 + 180) % 360)) $spriteZ 0
+getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 270 + 180) % 360)) $spriteZ $(($spriteZ * 2))
 draw="$draw $ret"
 
-getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 90 + 270) % 360)) $((spriteZ * 2)) $spriteZ
+getsprite $ssh "rgb($sfr,$sfg,$sfb)" $(((sro * 270 + 270) % 360)) 0 $spriteZ
 draw="$draw $ret"
 
 # generate center sprite

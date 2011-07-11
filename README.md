@@ -48,3 +48,16 @@ GNU General Public License for more details.
  
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <<http://www.gnu.org/licenses/>>.
+
+Thanks
+------
+
+I would like to thank the following person(s) for improvments and bug fixing:
+
+*   Liviu Cristian Mirea-Ghiban, http://github.com/liviumirea
+    
+    1.  The sprites were being drawn with an additional 1px per width and height 
+        and had bleeding edges in the final image.
+
+    2.  The rotations didn't completely match the ones in the original PHP 
+        Identicon script.

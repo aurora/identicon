@@ -1,13 +1,10 @@
-identicon.sh
-============
+# identicon.sh
 
-Usage
------
+## Usage
 
-    $ ./identicon.sh [-H hash] [-s size-of-identicon] [-o file-name] [-t] [-h]
+    $ ./identicon.sh [arguments]
 
-Description
------------
+## Description
 
 An Identicon is a visual representation of a hash value. Please have a look at "[wikipedia](http://en.wikipedia.org/wiki/Identicon)"
 for a detailed explanation of identicons and have a look at the "[wiki](https://github.com/aurora/identicon/wiki/Examples)" for some
@@ -18,16 +15,16 @@ This is a re-implementation of the PHP script "[PHP identicons](http://identicon
 The original script requires PHP and the GD library, the re-implemented script is intented to be called from 
 command-line and requires a bash, imagemagick and bc.
 
-### Optional parameters
+### Arguments
 
     -H  hash to use for generating identicon
     -s  size of generated identicon in pixels (default: 64)
+    -w  apply swirl effect, expects a degree value (eg.: 180, -60, etc.) (default: no)
     -o  name of file to save created image to (default: stdout)
     -t  use transparent background (default: white)
     -h  display this usage information
 
-License
--------
+## License
 
 identicon.sh
 
@@ -46,10 +43,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <<http://www.gnu.org/licenses/>>.
 
-Thanks
-------
+## Thanks
 
-I would like to thank the following person(s) for improvments and bug fixing:
+Thanks to all contributors! 
 
 *   Liviu Cristian Mirea-Ghiban, http://github.com/liviumirea
     
@@ -58,3 +54,8 @@ I would like to thank the following person(s) for improvments and bug fixing:
 
     2.  The rotations didn't completely match the ones in the original PHP 
         Identicon script.
+
+*   Luis Martin Gil, https://github.com/luismartingil
+
+    *   Optional hash / hash generation
+

@@ -75,7 +75,7 @@ while getopts H:s:o:th OPTIONS; do
 done
 
 if [ -z "$hash" ]; then
-    hash=`cat /dev/urandom | tr -dc 'a-fA-F0-9' | fold -w 32 | head -n 1`
+    hash=`cat /dev/urandom | LC_ALL=C tr -dc 'a-fA-F0-9' | fold -w 32 | head -n 1`
 fi
 
 if ! [[ "$hash" =~ ^[0-9a-fA-F]{17,}$ ]]; then

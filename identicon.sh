@@ -39,28 +39,32 @@ ret=""                                              # stores return values of fu
 
 out="-"                                             # generated identicon will be output to stdout per default
 back="white"                                        # background color of identicon
-hash=""                                             # hash to generate identicon from 
+hash=""                                             # hash to generate identicon from
 size=64                                             # size of identicon to create
+swirl=0                                             # swirl by degrees
 
 # process command-line parameters
 #
 function showusage {
-    echo "usage: $0 [-H hash] [-s size-of-identicon] [-o file-name] [-t] [-h]
+    echo "usage: $0 [-H hash] [-s size-of-identicon] [-w swirl-amount] [-o file-name] [-t] [-h]
 
 -H  hash to use for generating identicon
 -s  size of generated identicon in pixels (default: 64)
+-w  apply swirl effect, expects a degree value (eg.: 180, -60, etc.) (default: no)
 -o  name of file to save created image to (default: stdout)
 -t  use transparent background (default: white)
 -h  display this usage information
 "
 }
 
-while getopts H:s:o:th OPTIONS; do
+while getopts H:s:w:o:th OPTIONS; do
     case $OPTIONS in
         H)
             hash=$OPTARG;;
         s)
             size=$OPTARG;;
+        w)
+            swirl=$OPTARG;;
         o) 
             out=$OPTARG;;
         t)
@@ -89,6 +93,12 @@ if [ "$size" -le "0" ]; then
     showusage
     exit 1
 fi
+
+case ${swirl#[-+]} in
+    *[!0-9]*) 
+        showusage
+        exit 1;;
+esac
 
 # generate sprite for corners and sides 
 # 
@@ -275,4 +285,5 @@ draw="$draw $ret"
 #
 convert -size $((spriteZ * 3))x$((spriteZ * 3)) xc:$back -fill none \
         -draw "$draw" \
+        -swirl $swirl \
         -scale $size"x"$size png:$out

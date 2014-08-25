@@ -4,7 +4,7 @@ identicon.sh
 Usage
 -----
 
-    $ ./identicon.sh -H hash [-s size-of-identicon] [-o file-name] [-t] [-h]
+    $ ./identicon.sh [-H hash] [-s size-of-identicon] [-o file-name] [-t] [-h]
 
 Description
 -----------
@@ -18,12 +18,9 @@ This is a re-implementation of the PHP script "[PHP identicons](http://identicon
 The original script requires PHP and the GD library, the re-implemented script is intented to be called from 
 command-line and requires a bash, imagemagick and bc.
 
-### Required parameters
-
-    -H  hash to use for generating identicon
-
 ### Optional parameters
 
+    -H  hash to use for generating identicon
     -s  size of generated identicon in pixels (default: 64)
     -o  name of file to save created image to (default: stdout)
     -t  use transparent background (default: white)

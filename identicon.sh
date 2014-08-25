@@ -45,7 +45,7 @@ size=64                                             # size of identicon to creat
 # process command-line parameters
 #
 function showusage {
-    echo "usage: $0 -H hash [-s size-of-identicon] [-o file-name] [-t] [-h]
+    echo "usage: $0 [-H hash] [-s size-of-identicon] [-o file-name] [-t] [-h]
 
 -H  hash to use for generating identicon
 -s  size of generated identicon in pixels (default: 64)
@@ -74,9 +74,12 @@ while getopts H:s:o:th OPTIONS; do
     esac
 done
 
+if [ -z "$hash" ]; then
+    hash=`cat /dev/urandom | tr -dc 'a-fA-F0-9' | fold -w 32 | head -n 1`
+fi
+
 if ! [[ "$hash" =~ ^[0-9a-fA-F]{17,}$ ]]; then
-    echo "warning: empty or wrong hash value
-"
+    echo "warning: empty or wrong hash value"
     
     showusage
     exit 1

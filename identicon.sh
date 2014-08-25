@@ -46,7 +46,7 @@ swirl=0                                             # swirl by degrees
 # process command-line parameters
 #
 function showusage {
-    echo "usage: $0 [-H hash] [-s size-of-identicon] [-w swirl-amount] [-o file-name] [-t] [-h]
+    echo "usage: $0 [arguments]
 
 -H  hash to use for generating identicon
 -s  size of generated identicon in pixels (default: 64)

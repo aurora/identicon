@@ -173,11 +173,19 @@ function getsprite {
         polygon="$polygon $(echo "${point%%,*} * $spriteZCoord + $xOffs" | bc -l),$(echo "${point##*,} * $spriteZCoord + $yOffs" | bc -l)"
     done
     
-    ret="push graphic-context
-            translate $((tX)),$((tY))
-            rotate $rotation
-            fill $RGB      path 'M $polygon Z'
-         pop graphic-context"
+    if [ "$fmt" = "svg" ]; then
+        ret="<g transform=\"translate($((tX)), $((tY)))\">
+                <g transform=\"rotate($rotation)\">
+                    <path d=\"M $polygon Z\" style=\"fill:$RGB\" />
+                </g>
+             </g>"
+    else
+        ret="push graphic-context
+                translate $((tX)),$((tY))
+                rotate $rotation
+                fill $RGB      path 'M $polygon Z'
+             pop graphic-context"
+    fi
 }
  
 # generate sprite for center block
@@ -217,11 +225,18 @@ function getcenter {
     done
     
     if [ "$points" != "" ]; then
-        ret="push graphic-context
-                translate $((tX)),$((tY))
-                fill $bRGB      rectangle 0,0 $spriteZCoord,$spriteZCoord
-                fill $fRGB      path 'M $polygon Z'
-             pop graphic-context"
+        if [ "$fmt" = "svg" ]; then
+            ret="<g transform=\"translate($((tX)), $((tY)))\">
+                    <rect x=\"0\" y=\"0\" width=\"$spriteZCoord\" height=\"$spriteZCoord\" style=\"fill:$bRGB\" />
+                    <path d=\"M $polygon Z\" style=\"fill:$fRGB\" />
+                 </g>"
+        else
+            ret="push graphic-context
+                    translate $((tX)),$((tY))
+                    fill $bRGB      rectangle 0,0 $spriteZCoord,$spriteZCoord
+                    fill $fRGB      path 'M $polygon Z'
+                 pop graphic-context"
+        fi
     else
         ret=""
     fi
@@ -291,8 +306,18 @@ draw="$draw $ret"
 
 # generate identicon
 #
-convert -size $((spriteZ * 3))x$((spriteZ * 3)) xc:$back -fill none \
-        -draw "$draw" \
-        -swirl $swirl \
-        -scale $size"x"$size \
-        $fmt:$out
+if [ "$fmt" = "svg" ]; then
+    if [ "$out" = "-" ]; then
+        out="/dev/stdout"
+    fi
+    
+    size=$((spriteZ * 3))
+    
+    echo "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" viewbox=\"0 0 $size $size\" width=\"$size\" height=\"$size\">$draw</svg>" > $out
+else
+    convert -size $((spriteZ * 3))x$((spriteZ * 3)) xc:$back -fill none \
+            -draw "$draw" \
+            -swirl $swirl \
+            -scale $size"x"$size \
+            $fmt:$out
+fi

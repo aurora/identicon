@@ -38,6 +38,7 @@ draw=""                                             # stores MVG commands to dra
 ret=""                                              # stores return values of functions
 
 out="-"                                             # generated identicon will be output to stdout per default
+fmt="png"                                           # output file format
 back="white"                                        # background color of identicon
 hash=""                                             # hash to generate identicon from
 size=64                                             # size of identicon to create
@@ -77,6 +78,11 @@ while getopts H:s:w:o:th OPTIONS; do
             exit 1;;
     esac
 done
+
+if [[ "$out" =~ ^([0-9a-zA-Z-]+):(.+) ]]; then
+    fmt=${BASH_REMATCH[1]}
+    out=${BASH_REMATCH[2]}
+fi
 
 if [ -z "$hash" ]; then
     hash=`cat /dev/urandom | LC_ALL=C tr -dc 'a-fA-F0-9' | fold -w 32 | head -n 1`
@@ -286,4 +292,5 @@ draw="$draw $ret"
 convert -size $((spriteZ * 3))x$((spriteZ * 3)) xc:$back -fill none \
         -draw "$draw" \
         -swirl $swirl \
-        -scale $size"x"$size png:$out
+        -scale $size"x"$size \
+        $fmt:$out

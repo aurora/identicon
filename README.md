@@ -24,18 +24,19 @@ command-line and requires a bash, imagemagick (only if output is not SVG) and bc
     -t  use transparent background (default: white)
     -h  display this usage information
 
-It's allowed to specify an output format for imagemagick by prefixing the the file (argument: -o) with the name
+It's allowed to specify an output format by prefixing the the file (argument: -o) with the name
 of the format for example:
 
     $ ./identicon.sh -o svg:-
 
-The default output format is 'png'.
+The default output format is 'png'. Imagemagick is not required when specifying 'svg' as output
+format.
 
 ## License
 
 identicon.sh
 
-Copyright (C) 2011 by Harald Lapp <<harald@octris.org>>
+Copyright (C) 2011-2014 by Harald Lapp <<harald@octris.org>>
  
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

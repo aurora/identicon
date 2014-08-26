@@ -80,7 +80,7 @@ while getopts H:s:w:o:th OPTIONS; do
 done
 
 if [[ "$out" =~ ^([0-9a-zA-Z-]+):(.+) ]]; then
-    fmt=${BASH_REMATCH[1]}
+    fmt=$(echo ${BASH_REMATCH[1]} | tr "[:upper:]" "[:lower:]")
     out=${BASH_REMATCH[2]}
 fi
 

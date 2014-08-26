@@ -86,6 +86,8 @@ fi
 
 if [ -z "$hash" ]; then
     hash=`cat /dev/urandom | LC_ALL=C tr -dc 'a-fA-F0-9' | fold -w 32 | head -n 1`
+    
+    echo $hash >/dev/stderr
 fi
 
 if ! [[ "$hash" =~ ^[0-9a-fA-F]{17,}$ ]]; then

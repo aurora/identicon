@@ -84,6 +84,10 @@ if [[ "$out" =~ ^([0-9a-zA-Z-]+):(.+) ]]; then
     out=${BASH_REMATCH[2]}
 fi
 
+if [ "$fmt" = "svg" ]; then
+    spriteZCoord=$spriteZ
+fi
+
 if [ -z "$hash" ]; then
     hash=`cat /dev/urandom | LC_ALL=C tr -dc 'a-fA-F0-9' | fold -w 32 | head -n 1`
     

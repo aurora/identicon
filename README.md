@@ -13,7 +13,7 @@ generated "[example identicons](https://github.com/aurora/identicon/wiki/Example
 This is a re-implementation of the PHP script "[PHP identicons](http://identicons.sf.net/)".
 
 The original script requires PHP and the GD library, the re-implemented script is intented to be called from 
-command-line and requires a bash, imagemagick and bc.
+command-line and requires a bash, imagemagick (only if output is not SVG) and bc.
 
 ### Arguments
 
@@ -27,7 +27,7 @@ command-line and requires a bash, imagemagick and bc.
 It's allowed to specify an output format for imagemagick by prefixing the the file (argument: -o) with the name
 of the format for example:
 
-    $ ./identicon.sh -o jpg:-
+    $ ./identicon.sh -o svg:-
 
 The default output format is 'png'.
 

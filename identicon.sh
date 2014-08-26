@@ -110,6 +110,14 @@ case ${swirl#[-+]} in
     *[!0-9]*) 
         showusage
         exit 1;;
+    *)
+        if [ "$fmt" = "svg" ]; then
+            echo "warning: swirl effect is not supported for SVG file format"
+            
+            showusage
+            exit 1
+        fi
+        ;;
 esac
 
 # generate sprite for corners and sides 

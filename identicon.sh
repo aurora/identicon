@@ -111,7 +111,7 @@ case ${swirl#[-+]} in
         showusage
         exit 1;;
     *)
-        if [ "$fmt" = "svg" ]; then
+        if [ "$fmt" = "svg" ] && [ $swirl -ne 0 ]; then
             echo "warning: swirl effect is not supported for SVG file format"
             
             showusage

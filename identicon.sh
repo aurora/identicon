@@ -323,7 +323,9 @@ if [ "$fmt" = "svg" ]; then
         out="/dev/stdout"
     fi
     
-    size=$((spriteZ * 3))
+    scale=$(echo "$size / $((spriteZ * 3))" | bc -l)
+    
+    draw="<g transform=\"scale($scale)\">$draw</g>"
     
     echo "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" viewbox=\"0 0 $size $size\" width=\"$size\" height=\"$size\">$draw</svg>" > $out
 else

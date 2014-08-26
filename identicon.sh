@@ -27,7 +27,7 @@
 #
 # The original script requires PHP and the GD library, the re-implemented
 # script is intented to be called from command-line and requires a bash, 
-# imagemagick and bc.
+# imagemagick (only if output is not SVG) and bc.
 #
 
 # init
@@ -51,7 +51,7 @@ function showusage {
 
 -H  hash to use for generating identicon
 -s  size of generated identicon in pixels (default: 64)
--w  apply swirl effect, expects a degree value (eg.: 180, -60, etc.) (default: no)
+-w  apply swirl effect, expects a degree value (eg.: 180, -60, etc.) (default: 0)
 -o  name of file to save created image to (default: stdout)
 -t  use transparent background (default: white)
 -h  display this usage information

@@ -32,6 +32,10 @@ of the format for example:
 The default output format is 'png'. Imagemagick is not required when specifying 'svg' as output
 format.
 
+## Examples
+
+<img src="http://dl.dropbox.com/u/5014780/github/identicons/example1.png" />&nbsp;&nbsp;<img src="http://dl.dropbox.com/u/5014780/github/identicons/example2.png" />&nbsp;&nbsp;<img src="http://dl.dropbox.com/u/5014780/github/identicons/example3.png" />&nbsp;&nbsp;<img src="http://dl.dropbox.com/u/5014780/github/identicons/example4.png" />
+
 ## License
 
 identicon.sh

@@ -34,7 +34,13 @@ format.
 
 ## Examples
 
+Some random examples:
+
 <img src="http://dl.dropbox.com/u/5014780/github/identicons/example1.png" />&nbsp;&nbsp;<img src="http://dl.dropbox.com/u/5014780/github/identicons/example2.png" />&nbsp;&nbsp;<img src="http://dl.dropbox.com/u/5014780/github/identicons/example3.png" />&nbsp;&nbsp;<img src="http://dl.dropbox.com/u/5014780/github/identicons/example4.png" />
+
+Swirl and no swirl:
+
+<img src="http://dl.dropbox.com/u/5014780/github/identicons/example5-swirl.png" />&nbsp;&nbsp;<img src="http://dl.dropbox.com/u/5014780/github/identicons/example5.png" />
 
 ## License
 
